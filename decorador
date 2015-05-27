@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<?php
+
+class Text
+{
+protected $string;
+public function __construct($string) { $this->string = $string; }
+public function getString() { return $this->string; }
+}
+class UpperCase
+{
+protected $text;
+public function __construct($text) { $this->text = $text; }
+public function getString() { return strtoupper($this->text->getString());}
+}
+class Bold
+{
+protected $text;
+public function __construct($text) { $this->text = $text; }
+public function getString() { return '<strong>' . $this->text->getString() . '</strong>';}
+}
+class Underline
+{
+protected $text;
+public function __construct($text) { $this->text = $text; }
+public function getString() { return '<u>' . $this->text->getString() . '</u>';}
+}
+$text = new Text('Hola ');
+echo $text->getString() . PHP_EOL;
+$text = new UpperCase(new Text('Inge edson'));
+echo $text->getString() . PHP_EOL;
+$text = new Bold(new UpperCase(new Text('como esta')));
+echo $text->getString() . PHP_EOL;
+$text = new Underline(new Bold(new UpperCase(new Text('le envio el proyecto'))));
+echo $text->getString() . PHP_EOL;
+?> 
